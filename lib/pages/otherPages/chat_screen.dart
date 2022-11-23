@@ -56,6 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   const SizedBox(
                     width: 2,
+
                   ),
                   (widget.image == "")?
                   const CircleAvatar(
