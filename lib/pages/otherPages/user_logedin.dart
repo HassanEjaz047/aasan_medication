@@ -11,16 +11,16 @@ import 'package:provider/provider.dart';
 import '../../services/models/PatientModels/homeScreenModels/drowerProfileModel.dart';
 import 'NameDetailsScreen.dart';
 
-class UserCheck extends StatefulWidget {
-  const UserCheck({Key? key, }) : super(key: key);
+class ReturnToHomeScreen extends StatefulWidget {
+  const ReturnToHomeScreen({Key? key, }) : super(key: key);
   @override
-  State<UserCheck> createState() => _UserCheckState();
+  State<ReturnToHomeScreen> createState() => _ReturnToHomeScreenState();
 }
 
-class _UserCheckState extends State<UserCheck> {
+class _ReturnToHomeScreenState extends State<ReturnToHomeScreen> {
   splashServices() {
     Timer(
-        const Duration(seconds: 20),
+        const Duration(seconds: 4),
             () async {
             Future.delayed(Duration.zero).then((value) {
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (c)=> const HomeScreen() ), (route) => true);
@@ -33,16 +33,6 @@ class _UserCheckState extends State<UserCheck> {
   @override
   void initState() {
     super.initState();
-    print("object");
-    print("helo");
-    print("hjsdhf");
-    print("hjsdhf");
-    print("hjsdhf");
-    print("hjsdhf");
-    print("hjsdhf");
-    print("hjsdhf");
-    print("hjsdhf");
-
     splashServices();
 
   }

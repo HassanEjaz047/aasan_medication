@@ -9,12 +9,17 @@ import '../../models/PeramedicModels/documet_model.dart';
 import '../../models/PeramedicModels/idVerificationModel.dart';
 
 class ParamedicRegistration with ChangeNotifier {
+
+
   ParamedicRegistration() {
     getBasicInfo();
     getIdConfirmation();
     getCNICPics();
     getDocumentPics();
+    peramedicRegistrationConfirmation();
   }
+
+  var count = 1;
   int counter = 0;
   BasicInfoModel? infoUser;
   IdConfirmationModel? idConfirm;
@@ -85,29 +90,48 @@ class ParamedicRegistration with ChangeNotifier {
 
   getBasicInfo() {
     currentUserDoc.snapshots().listen((event) {
-      infoUser = BasicInfoModel.fromJson(event.data()!);
-      notifyListeners();
+      if(event.data()!=null) {
+        infoUser = BasicInfoModel.fromJson(event.data()!);
+        notifyListeners();
+      }
     });
   }
 
   getIdConfirmation() {
     idConfirmationDoc.snapshots().listen((event) {
+      if(event.data()!=null){
       idConfirm = IdConfirmationModel.fromJson(event.data()!);
       notifyListeners();
+      }
     });
   }
 
   getCNICPics() {
+
     cnicVerficationDoc.snapshots().listen((event) {
-      cnicVerify = CnicModel.fromJson(event.data()!);
-      notifyListeners();
+      if(event.data()!=null) {
+        cnicVerify = CnicModel.fromJson(event.data()!);
+        notifyListeners();
+      }
     });
   }
 
   getDocumentPics() {
     documentVerficationDoc.snapshots().listen((event) {
-      documentList = DocumentModel.fromJson(event.data()!);
-      notifyListeners();
+      if(event.data()!=null) {
+        documentList = DocumentModel.fromJson(event.data()!);
+        notifyListeners();
+      }
     });
   }
+  Future peramedicRegistrationConfirmation() async =>
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("RegisterAsParamedic")
+          .get()
+          .then((v) {
+        count = v.docs.length;
+        notifyListeners();
+      });
 }

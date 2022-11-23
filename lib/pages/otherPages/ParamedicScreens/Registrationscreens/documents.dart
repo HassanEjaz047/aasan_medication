@@ -194,18 +194,15 @@ Blury photos are not allowed""",
                            // ignore: use_build_context_synchronously
                            Navigator.pop(context);
                            // ignore: use_build_context_synchronously
-                           newSnackBar(context);
+                           newSnackBar(context,"Invalid Data" );
                          }
                         else{
                            await value.peramedicRegistrationDocumentsFunction(
                                documentPic: documentPic!);
-
                            // ignore: use_build_context_synchronously
-                           Navigator.push(
-                               context,
-                               MaterialPageRoute(
-                                   builder: (c) =>
-                                   const ParamedicRegistrationScreen()));
+                           Navigator.pop(context);
+                           // ignore: use_build_context_synchronously
+                           newSnackBar(context,"data saved" );
                          }
                       },
                       child: Text(
@@ -276,12 +273,14 @@ Blury photos are not allowed""",
   }
 
   Future pickImageFromCamera() async {
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera);
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera,
+      imageQuality: 25,
+    );
     setState(() {
       file = image;
     });
   }
-  void newSnackBar(BuildContext context) {
+  void newSnackBar(BuildContext context, String text ) {
     final snackbaar = SnackBar(
         duration: const Duration(milliseconds: 2000),
         backgroundColor: Colors.black.withOpacity(0.8),
@@ -289,7 +288,7 @@ Blury photos are not allowed""",
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        content: Text("Invalid Data"));
+        content: Text(text));
     ScaffoldMessenger.of(context).showSnackBar(snackbaar);
   }
 }

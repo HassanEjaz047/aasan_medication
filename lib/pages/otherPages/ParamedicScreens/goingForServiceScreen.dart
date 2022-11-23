@@ -13,6 +13,7 @@ import 'package:med_assist/services/utils/colors.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:med_assist/services/widgets/loadingDialogue.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../services/models/PatientModels/senRequestModel.dart';
 import '../../../services/utils/app_text_style.dart';
 import '../chat_screen.dart';
@@ -20,10 +21,11 @@ import '../chat_screen.dart';
 class ParamedicServiceScreen extends StatefulWidget {
  // ServiceModel currentService;
   ServiceModel patientModel;
-
+  RegisterPeramedic provider;
   ParamedicServiceScreen({
     Key? key,
   required this.patientModel,
+    required this.provider
   }) : super(key: key);
 
   @override
@@ -31,8 +33,8 @@ class ParamedicServiceScreen extends StatefulWidget {
 }
 
 class _ParamedicServiceScreen extends State<ParamedicServiceScreen> {
-
   void initState() {
+     widget.provider.getPhoneNumbers(widget.patientModel.uid!);
     // patientlng = widget.currentService.latitude;
     //  patientlng = widget.currentService.longitude;
     super.initState();
@@ -160,7 +162,14 @@ class _ParamedicServiceScreen extends State<ParamedicServiceScreen> {
                   children: [
                       Padding(
                        padding: const EdgeInsets.all(10),
-                       child: CircleAvatar(
+                       child:
+                       (widget.patientModel.imageUrl == "")?
+                       const CircleAvatar(
+                           backgroundColor: Colors.white,
+                           maxRadius: 25,
+                           backgroundImage: AssetImage(
+                               "assets/images/extra/profilePic.png")):
+                       CircleAvatar(
                          radius: 25,
                          backgroundImage: NetworkImage(widget.patientModel.imageUrl! ),
                        ),
@@ -185,7 +194,7 @@ class _ParamedicServiceScreen extends State<ParamedicServiceScreen> {
                             color: AppColors.kPrimaryColor
                         ),
                         child: IconButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (c)=> ChatScreen(Name: widget.patientModel.patientName, image: widget.patientModel.imageUrl!, id: widget.patientModel.uid!,  ) ));
+                          Navigator.push(context, MaterialPageRoute(builder: (c)=> ChatScreen(Name: widget.patientModel.patientName, image: widget.patientModel.imageUrl!, id: widget.patientModel.uid! ) ));
                         }, icon:const Icon(Icons.message, ), color: Colors.white,),
                       ),
                       const SizedBox(
@@ -199,7 +208,9 @@ class _ParamedicServiceScreen extends State<ParamedicServiceScreen> {
                             color: AppColors.kPrimaryColor
                         ),
                         child: IconButton(onPressed: (){
-
+                             setState(() {
+                               _makePhoneCall('tel: 0${widget.provider.pNumber?.phoneNumber}');
+                             });
                         }, icon:const Icon(Icons.call, ), color: Colors.white,),
                       )
                     ],
@@ -336,5 +347,11 @@ class _ParamedicServiceScreen extends State<ParamedicServiceScreen> {
   GoogleMapController? _mapController;
   bool showBottom = true;
 
-
+  Future<void> _makePhoneCall(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }

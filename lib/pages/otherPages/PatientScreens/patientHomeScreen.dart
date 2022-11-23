@@ -33,11 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     getLoadData();
     // Map Style Json Location
-    rootBundle
-        .loadString('assets/googleMapStyles/map_style.json')
-        .then((string) {
-      _mapStyle = string;
-    });
+    // rootBundle
+    //     .loadString('assets/googleMapStyles/map_style.json')
+    //     .then((string) {
+    //   _mapStyle = string;
+    // });
     // Location Custom Picture
     setCustomMapPin();
   }

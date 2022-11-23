@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -38,6 +40,7 @@ class RegisterPeramedic with ChangeNotifier {
   var paramedicServicesCounter;
   var paramedicTotalReviewsCounter;
   DrawerProfileModel? user;
+  DrawerProfileModel? pNumber;
   double? overAllReviews;
   var first, second, third;
   GetParamedicsOffers? model;
@@ -221,7 +224,7 @@ class RegisterPeramedic with ChangeNotifier {
   }
 
   paramedicRequestResponseAccept(String paramedicId, context,
-      GetParamedicsOffers currentModel, RegisterPeramedic provider, String number ) async {
+      GetParamedicsOffers currentModel, RegisterPeramedic provider ) async {
     await FirebaseFirestore.instance
         .collection("users")
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -238,7 +241,7 @@ class RegisterPeramedic with ChangeNotifier {
 
                   currentModel: currentModel,
                   provider: provider,
-              number: number,
+
                 )));
   }
 
@@ -251,39 +254,66 @@ class RegisterPeramedic with ChangeNotifier {
         .update({"patientResponse": false});
     notifyListeners();
   }
-
-  acceptingOffersofParamedics(String patientId, String paramedicId, context,
-      ServiceModel patientModel) async {
+  acceptingOffersofParamedics( String patientId, String paramedicId, context,ServiceModel patientModel, RegisterPeramedic provider,)async {
     FirebaseFirestore.instance
         .collection("users")
         .doc(patientId)
-        .collection("paramedicRequests")
-        .doc(paramedicId)
-        .snapshots()
-        .listen((event) async {
+        .collection("paramedicRequests").doc(paramedicId).snapshots().listen((
+        event) async {
       model = GetParamedicsOffers.fromJson(event.data()!);
       notifyListeners();
-      if (model?.patientResponse == true) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    ParamedicServiceScreen(patientModel: patientModel)));
-        FirebaseFirestore.instance
-            .collection("users")
-            .doc(patientId)
-            .collection("chatWithParamedics");
+      if (model?.patientResponse == true){
+
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => ParamedicServiceScreen(
+              provider: provider,
+                patientModel: patientModel
+            )));
+        FirebaseFirestore.instance.collection("users").doc( patientId ).collection("chatWithParamedics");
         getListOfChat(patientId);
       } else if (model?.patientResponse == false) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => ParamedicHomeScreen()));
-      } else {
+      }
+      else {
         Future.delayed(const Duration(seconds: 15));
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => ParamedicHomeScreen()));
       }
     });
   }
+  // acceptingOffersofParamedics(String patientId, String paramedicId, context,
+  //     ServiceModel patientModel, RegisterPeramedic provider ) async {
+  //   FirebaseFirestore.instance
+  //       .collection("users")
+  //       .doc(patientId)
+  //       .collection("paramedicRequests")
+  //       .doc(paramedicId)
+  //       .snapshots()
+  //       .listen((event) async {
+  //     model = GetParamedicsOffers.fromJson(event.data()!);
+  //     notifyListeners();
+  //     if (model?.patientResponse == true) {
+  //       Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //               builder: (context) =>
+  //                   ParamedicServiceScreen(patientModel: patientModel, provider: provider, )));
+  //       FirebaseFirestore.instance
+  //           .collection("users")
+  //           .doc(patientId)
+  //           .collection("chatWithParamedics");
+  //       getListOfChat(patientId);
+  //     } else if (model?.patientResponse == false) {
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => ParamedicHomeScreen()));
+  //     } else {
+  //       Future.delayed(const Duration(seconds: 15));
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => ParamedicHomeScreen()));
+  //     }
+  //   });
+  // }
 
   paramedicEndService(
     String patientId,
@@ -334,28 +364,13 @@ class RegisterPeramedic with ChangeNotifier {
     });
   }
 
-  uploadChat(String uploadId, String message) async {
-    var chats = FirebaseFirestore.instance
-        .collection("users")
-        .doc(uploadId)
-        .collection("chatWithParamedics");
-    chats.add(ChatModel(
-            id: FirebaseAuth.instance.currentUser!.uid,
-            message: message,
-            timestamp: FieldValue.serverTimestamp())
-        .toJson());
-  }
 
-  getListOfChat(String id) {
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(id)
-        .collection("chatWithParamedics")
-        .orderBy('timestamp', descending: false)
-        .snapshots()
+
+  getListOfChat( String id ){
+    FirebaseFirestore.instance.collection("users").doc( id ).collection("chatWithParamedics").orderBy('timestamp', descending: false).snapshots()
         .listen(
-      (event) {
-        chatScreenList = [];
+          (event) {
+        chatScreenList  = [];
         for (var element in event.docs) {
           chatScreenList.add(ChatModel.fromJson(element.data()));
         }
@@ -475,5 +490,16 @@ class RegisterPeramedic with ChangeNotifier {
         }
       },
     );
+  }
+
+  getPhoneNumbers(String docId ) {
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(docId)
+        .snapshots()
+        .listen((event) {
+      pNumber = DrawerProfileModel.fromJson(event.data()!);
+      notifyListeners();
+    });
   }
 }

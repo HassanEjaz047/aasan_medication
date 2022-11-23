@@ -14,13 +14,15 @@ import '../../../../services/widgets/PeramedicData/paramedicRegisterWidget.dart'
 import '../registerScreen.dart';
 
 class BasicInfo extends StatefulWidget {
-  const BasicInfo({Key? key}) : super(key: key);
-
+  BasicInfo({Key? key,required this.fName, required this.lName, required this.emal  }) : super(key: key);
+String fName;
+String lName;
+String emal;
   @override
   State<BasicInfo> createState() => _BasicInfoState();
 }
 
-final _formkey = GlobalKey<FormState>();
+final _forkey = GlobalKey<FormState>();
 DateTime selectedDate = DateTime.now();
 TextEditingController fname = TextEditingController();
 TextEditingController lname = TextEditingController();
@@ -37,6 +39,14 @@ class _BasicInfoState extends State<BasicInfo> {
     });
   }
 
+   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fname.text = widget.fName;
+    lname.text = widget.lName;
+    email.text = widget.emal;
+  }
   @override
   Future pickImageFromGallery() async {
     XFile? oimage = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -58,9 +68,9 @@ class _BasicInfoState extends State<BasicInfo> {
     try {
       await refrenceDirImages.putFile(File(file!.path));
       profilePicUrl = await refrenceDirImages.getDownloadURL();
-      print(profilePicUrl);
+
     } catch (e) {
-      print('error occured');
+
     }
     return profilePicUrl;
   }
@@ -83,15 +93,11 @@ class _BasicInfoState extends State<BasicInfo> {
         create: (context) => ParamedicRegistration(),
         child: Consumer<ParamedicRegistration>(
           builder: (context, value, child) {
-            if(value.infoUser!=null){
-            fname.text=value.infoUser!.fname;
-            lname.text = value.infoUser!.lName;
-            email.text = value.infoUser!.email!;
-            }
+
             return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Form(
-                key: _formkey,
+                key: _forkey,
                 child: Column(
                   children: [
                     SizedBox(height: screenHeight * 0.02),
@@ -129,9 +135,10 @@ class _BasicInfoState extends State<BasicInfo> {
                                             ? (value.infoUser != null)?  
                                                CircleAvatar(
                                             radius: 78,
+                                            backgroundColor: Colors.white,
                                             backgroundImage: NetworkImage(value.infoUser!.profileImage) ) : 
                                              const CircleAvatar(
-                                         
+
                                             radius: 78,
                                             backgroundImage: AssetImage(
                                                 "assets/images/extra/profilePic.png"))                                    //     ? (value.infoUser!.profileImage != null)
@@ -196,7 +203,7 @@ class _BasicInfoState extends State<BasicInfo> {
                               padding: const EdgeInsets.only(
                                   left: 10, right: 12, top: 0),
                               child: TextFieldClass(
-                                fieldController: fname,
+                                fieldController:  fname ,
                                 validate: (valid){
                                   if (valid!.isEmpty ||
                                       RegExp(r'^[A-Z]+$').hasMatch(valid)) {
@@ -346,29 +353,39 @@ class _BasicInfoState extends State<BasicInfo> {
                                           BorderRadius.circular(50)))),
                           onPressed: () async {
 
-                            if (_formkey.currentState!.validate()) {
+                            if (_forkey.currentState!.validate()) {
                               LoadingDialogue.showLoaderDialog(context);
-                               profilePicUrl = await uploadFile();
+                              profilePicUrl = await uploadFile();
                               if (profilePicUrl == null) {
+                              if  (value.infoUser?.profileImage == null){
+                                // ignore: use_build_context_synchronously
+                                Navigator.pop(context);
+                                // ignore: use_build_context_synchronously
+                                newSnackBar(context,"Profile picture required");
+                              }
+                              else{
+                                await value.paramedicBasicInfo(fname.text, lname.text, selectedDate.millisecondsSinceEpoch, value.infoUser!.profileImage, email.text );
 
                                 // ignore: use_build_context_synchronously
                                 Navigator.pop(context);
                                 // ignore: use_build_context_synchronously
-                                newSnackBar(context);
+                                newSnackBar(context, "data saved");
                               }
-                             else{
-                                _formkey.currentState!.save();
+
+                              }
+                              else
+                              {
                                 await value.paramedicBasicInfo(fname.text, lname.text, selectedDate.millisecondsSinceEpoch, profilePicUrl!, email.text );
+
+                           // ignore: use_build_context_synchronously
+                           Navigator.pop(context);
                                 // ignore: use_build_context_synchronously
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (c) =>
-                                        const ParamedicRegistrationScreen()));
+                                newSnackBar(context, "data saved");
                               }
                             }
-                            // value.ParamedicRegister(firstName, lName, DOB, email, image)
-                          },
+                             else{
+                              }
+                             },
                           child: Text(
                             "Next ",
                             style: AppTextStyles.popins(
@@ -533,7 +550,7 @@ class _BasicInfoState extends State<BasicInfo> {
       ),
     );
   }
-  void newSnackBar(BuildContext context) {
+  void newSnackBar(BuildContext context, String text) {
     final snackbaar = SnackBar(
         duration: const Duration(milliseconds: 2000),
         backgroundColor: Colors.black.withOpacity(0.8),
@@ -541,7 +558,7 @@ class _BasicInfoState extends State<BasicInfo> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        content: Text("Profile picture required"));
+        content: Text(text));
     ScaffoldMessenger.of(context).showSnackBar(snackbaar);
   }
 }

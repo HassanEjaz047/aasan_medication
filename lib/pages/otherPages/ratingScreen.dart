@@ -48,6 +48,13 @@ class _RatingParamedicScreenState extends State<RatingParamedicScreen> {
                   const SizedBox(
                     height: 150,
                   ),
+
+                  (widget.currentParamedic.image =="")?
+                  const CircleAvatar(
+                    //  backgroundColor: Colors.white,
+                      radius: 40,
+                      backgroundImage: AssetImage(
+                          "assets/images/extra/profilePic.png")):
                   CircleAvatar(
                     radius: 40,
                     backgroundColor: Colors.red,

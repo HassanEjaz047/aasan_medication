@@ -11,16 +11,16 @@ import 'package:provider/provider.dart';
 import '../../services/models/PatientModels/homeScreenModels/drowerProfileModel.dart';
 import 'NameDetailsScreen.dart';
 
-class CheckUser extends StatefulWidget {
-  const CheckUser({Key? key, }) : super(key: key);
+class ReturnToSelectionScreen extends StatefulWidget {
+  const ReturnToSelectionScreen({Key? key, }) : super(key: key);
   @override
-  State<CheckUser> createState() => _CheckUserState();
+  State<ReturnToSelectionScreen> createState() => _ReturnToSelectionScreenState();
 }
 
-class _CheckUserState extends State<CheckUser> {
+class _ReturnToSelectionScreenState extends State<ReturnToSelectionScreen> {
   splashServices() {
       Timer(
-        const Duration(seconds: 20),
+        const Duration(seconds: 4),
         () async {
       Future.delayed(Duration.zero).then((value) {
         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (c)=> Selectionscreen() ), (route) => true);

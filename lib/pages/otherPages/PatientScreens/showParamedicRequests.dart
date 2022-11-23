@@ -371,7 +371,7 @@ class _ShowParamedicRequests extends State<ShowParamedicRequests> {
               FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).collection("endService").doc(value.offers[index].id);
               await value.paramedicRequestResponseAccept(
                 value.offers[index].id, context, value.offers[index],value,
-                  value.user!.phoneNumber
+
               );
             },
             onPress: () async {

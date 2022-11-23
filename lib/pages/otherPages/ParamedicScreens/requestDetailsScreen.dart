@@ -148,6 +148,12 @@ class _AcceptPatientRequest extends State<AcceptPatientRequest> {
                   children: [
                     Column(
                       children: [
+                      (widget.currentService.imageUrl == "")?
+                       const CircleAvatar(
+                      backgroundColor: Colors.white,
+                       maxRadius: 30,
+                      backgroundImage: AssetImage(
+                        "assets/images/extra/profilePic.png")):
                         CircleAvatar(
                           radius: 30,
                           backgroundImage: NetworkImage(
@@ -220,7 +226,7 @@ class _AcceptPatientRequest extends State<AcceptPatientRequest> {
                         await Future.delayed(const Duration(seconds: 5));
                         // ignore: use_build_context_synchronously
                         await value.acceptingOffersofParamedics(
-                          widget.currentService.uid, FirebaseAuth.instance.currentUser!.uid, context, widget.currentService,
+                          widget.currentService.uid, FirebaseAuth.instance.currentUser!.uid, context, widget.currentService, value
                         );
                       }
                     },

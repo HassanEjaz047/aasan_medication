@@ -23,7 +23,9 @@ class _CnicVerficationState extends State<CnicVerfication> {
 
   XFile? frontSide;
   Future pickImageCnicFront() async {
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera);
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera,
+      imageQuality: 25,
+    );
     setState(() {
       frontSide = image;
     });
@@ -31,7 +33,9 @@ class _CnicVerficationState extends State<CnicVerfication> {
 
   XFile? backSide;
   Future pickImageCnicBack() async {
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera);
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera,
+      imageQuality: 25,
+    );
     setState(() {
       backSide = image;
     });
@@ -316,7 +320,7 @@ class _CnicVerficationState extends State<CnicVerfication> {
                          if(frontPicUrl1 == null || backPicUrl1 == null ){
                            // ignore: use_build_context_synchronously
                            Navigator.pop(context);
-                           newSnackBar(context);
+                           newSnackBar(context,"Invalid Data" );
                          }
                        else{
                            await value.peramedicRegistrationCnicFunction(
@@ -324,11 +328,9 @@ class _CnicVerficationState extends State<CnicVerfication> {
                                cnicBackPicUrl: backPicUrl1!);
 
                            // ignore: use_build_context_synchronously
-                           Navigator.push(
-                               context,
-                               MaterialPageRoute(
-                                   builder: (c) =>
-                                   const ParamedicRegistrationScreen()));
+                           Navigator.pop(context);
+                           // ignore: use_build_context_synchronously
+                           newSnackBar(context, "data saved");
                          }
                       },
                       child: Text(
@@ -380,7 +382,7 @@ class _CnicVerficationState extends State<CnicVerfication> {
       ),
     );
   }
-  void newSnackBar(BuildContext context) {
+  void newSnackBar(BuildContext context, String text ) {
     final snackbaar = SnackBar(
         duration: const Duration(milliseconds: 2000),
         backgroundColor: Colors.black.withOpacity(0.8),
@@ -388,7 +390,7 @@ class _CnicVerficationState extends State<CnicVerfication> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        content: Text("Invalid Data"));
+        content: Text(text));
     ScaffoldMessenger.of(context).showSnackBar(snackbaar);
   }
 }

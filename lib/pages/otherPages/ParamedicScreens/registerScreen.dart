@@ -8,6 +8,7 @@ import 'package:med_assist/services/utils/app_text_style.dart';
 import 'package:med_assist/services/utils/colors.dart';
 import 'package:med_assist/services/widgets/loadingDialogue.dart';
 import 'package:provider/provider.dart';
+import '../../../services/providers/peramedic/registerParamedic.dart';
 import '../../../services/widgets/PeramedicData/paramedicRegisterWidget.dart';
 import 'Registrationscreens/confirmationScreen.dart';
 import 'Registrationscreens/documents.dart';
@@ -24,11 +25,20 @@ class _ParamedicRegistrationScreenState
     extends State<ParamedicRegistrationScreen> {
   get screenHeight => MediaQuery.of(context).size.height;
   get screenWidth => MediaQuery.of(context).size.width;
-
+@override
+void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("afzaal ");
+    print("afzaal ");
+    print("afzaal ");
+    print("afzaal ");
+    print("afzaal ");
+  }
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<RegisterPeramedic>(
-      create: (context) => RegisterPeramedic(),
+    return ChangeNotifierProvider<ParamedicRegistration>(
+      create: (context) => ParamedicRegistration(),
       child: Scaffold(
         backgroundColor: AppColors.kSecondryColor,
         // AppBar
@@ -39,7 +49,7 @@ class _ParamedicRegistrationScreenState
             )),
 
         // Body
-        body:  Consumer<RegisterPeramedic> (
+        body:  Consumer<ParamedicRegistration> (
           builder: (context, value, child) {
          return
           Column(
@@ -68,11 +78,17 @@ class _ParamedicRegistrationScreenState
                   child: Column(
                     children: [
                       paramedicInfo("Basic Info", onTap: () {
-                        //  print("object");
+
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BasicInfo()));
+                                builder: (context) =>  BasicInfo(
+
+                                  fName: value.infoUser?.fname ?? "",
+                                  lName: value.infoUser?.lName  ?? "",
+                                  emal: value.infoUser?.email!  ?? "",
+
+                                )));
                       }),
                       const Divider(
                         thickness: 1,
@@ -143,6 +159,7 @@ class _ParamedicRegistrationScreenState
                     onPressed: () {
                       if (value.count < (4)) {
                         print("old${value.count}");
+                        newSnackBar("Fill all information", context);
                         newSnackBar("Fill all information", context);
                       } else {
                         print("new${value.count}");

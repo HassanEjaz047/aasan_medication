@@ -45,7 +45,7 @@ class _PatientsRequestsScreenState extends State<PatientsRequestsScreen> {
             String formattedTime = DateFormat.jm().format(date); //
             // var model = patientsRequestList[index];
             return Container(
-                height: screenHeight * 0.12,
+               height: screenHeight * 0.12,
                 decoration: BoxDecoration(
                     border: Border(
                         bottom: BorderSide(color: Colors.grey.shade400))),
@@ -67,8 +67,11 @@ class _PatientsRequestsScreenState extends State<PatientsRequestsScreen> {
                         },
                         child: SizedBox(
                           width: screenWidth * 0.935,
+
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,13 +82,13 @@ class _PatientsRequestsScreenState extends State<PatientsRequestsScreen> {
                                     (model.imageUrl != "")
                                         ? CircleAvatar(
                                         backgroundColor: Colors.white,
-                                        radius: 25,
+                                        radius: 22,
                                         backgroundImage:
                                         NetworkImage(model.imageUrl!))
                                         :
                                     const CircleAvatar(
                                         backgroundColor: Colors.white,
-                                        radius: 25,
+                                        radius: 22,
                                         backgroundImage: AssetImage(
                                             "assets/images/extra/profilePic.png")),),
                                   Expanded(
@@ -95,7 +98,7 @@ class _PatientsRequestsScreenState extends State<PatientsRequestsScreen> {
                                       child: Text(
                                         (model.address == null)
                                             ? ""
-                                            :"$model.address",
+                                            :model.address,
                                         style: AppTextStyles.popins(
                                             style: const TextStyle(
                                                 fontSize: 14,
@@ -106,6 +109,7 @@ class _PatientsRequestsScreenState extends State<PatientsRequestsScreen> {
                                 ],
                               ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10, right: 15),

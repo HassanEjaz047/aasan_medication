@@ -11,17 +11,17 @@ import 'package:med_assist/services/models/PatientModels/getParamedicOffers.dart
 import 'package:med_assist/services/providers/RegisterUser.dart';
 import 'package:med_assist/services/utils/colors.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../services/utils/app_text_style.dart';
 import '../../test.dart';
 
 class PatientGettingServiceScreen extends StatefulWidget {
   GetParamedicsOffers currentModel;
   RegisterPeramedic? provider;
-  String number;
+
   PatientGettingServiceScreen({
     Key? key, required this.currentModel,
     required this.provider,
-    required this.number
   }) : super(key: key);
 
   @override
@@ -59,11 +59,12 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
   double? patientlng;
   LatLng? destinationLocation;
   int doctorFee = 0;
-
   @override
   void initState() {
     widget.provider?.paramedicCompletedService(
         FirebaseAuth.instance.currentUser!.uid, widget.currentModel, context);
+      widget.provider?.getPhoneNumbers(widget.currentModel.id);
+      widget.provider?.pNumber?.phoneNumber;
     // patientlng = widget.currentService.latitude;
     //  patientlng = widget.currentService.longitude;
     super.initState();
@@ -148,7 +149,7 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
                     ],
                   ),
                 ),
-                bottomSheetWidget(),
+                bottomSheetWidget(value ),
               ],
             );
           },
@@ -157,7 +158,7 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
     );
   }
 
-  Widget bottomSheetWidget() {
+  Widget bottomSheetWidget(value) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
@@ -195,7 +196,13 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(10),
-                      child: CircleAvatar(
+                      child: (widget.currentModel.image == "")?
+                      const CircleAvatar(
+                      backgroundColor: Colors.white,
+                    maxRadius: 25,
+                     backgroundImage: AssetImage(
+                    "assets/images/extra/profilePic.png")):
+                      CircleAvatar(
                         radius: 25,
                         backgroundImage: NetworkImage(
                             widget.currentModel.image),
@@ -227,7 +234,9 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
                               builder: (c) => ChatScreen(
                                 Name: widget.currentModel.paramedicName,
                                 image: widget.currentModel.image,
-                                id: FirebaseAuth.instance.currentUser!.uid,)));
+                                id: FirebaseAuth.instance.currentUser!.uid,
+                            //  provider: value,
+                              )));
                         },
                           icon: const Icon(Icons.message,),
                           color: Colors.white,),
@@ -242,7 +251,11 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
                             shape: BoxShape.circle,
                             color: AppColors.kPrimaryColor
                         ),
-                        child: IconButton(onPressed: () {},
+                        child: IconButton(onPressed: () {
+                          setState(() {
+                            _makePhoneCall('tel: 0${widget.provider!.pNumber?.phoneNumber}');
+                          });
+                        },
                           icon: const Icon(Icons.call,),
                           color: Colors.white,),
                       )
@@ -314,5 +327,12 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
 
       return placemark;
     });
+  }
+  Future<void> _makePhoneCall(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
