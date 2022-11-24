@@ -163,7 +163,7 @@ class _EditProfileState extends State<EditProfile> {
                                   child: Image.file(
                                     File(file!.path),
                                     fit: BoxFit.cover,
-                                    width: 400,
+                                   width: 400,
                                   ),
                                 )),
                     ),

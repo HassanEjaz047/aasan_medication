@@ -194,7 +194,7 @@ class _ParamedicServiceScreen extends State<ParamedicServiceScreen> {
                             color: AppColors.kPrimaryColor
                         ),
                         child: IconButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (c)=> ChatScreen(Name: widget.patientModel.patientName, image: widget.patientModel.imageUrl!, id: widget.patientModel.uid! ) ));
+                          Navigator.push(context, MaterialPageRoute(builder: (c)=> ChatScreen(Name: widget.patientModel.patientName, image: widget.patientModel.imageUrl!, id: widget.patientModel.uid!,provider: value,  ) ));
                         }, icon:const Icon(Icons.message, ), color: Colors.white,),
                       ),
                       const SizedBox(

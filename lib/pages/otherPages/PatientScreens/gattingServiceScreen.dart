@@ -235,6 +235,7 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
                                 Name: widget.currentModel.paramedicName,
                                 image: widget.currentModel.image,
                                 id: FirebaseAuth.instance.currentUser!.uid,
+                            provider: value,
                             //  provider: value,
                               )));
                         },

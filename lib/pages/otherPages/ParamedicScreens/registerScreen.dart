@@ -25,16 +25,6 @@ class _ParamedicRegistrationScreenState
     extends State<ParamedicRegistrationScreen> {
   get screenHeight => MediaQuery.of(context).size.height;
   get screenWidth => MediaQuery.of(context).size.width;
-@override
-void initState() {
-    // TODO: implement initState
-    super.initState();
-    print("afzaal ");
-    print("afzaal ");
-    print("afzaal ");
-    print("afzaal ");
-    print("afzaal ");
-  }
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ParamedicRegistration>(

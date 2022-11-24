@@ -150,13 +150,13 @@
 //                         width: 15,
 //                       ),
 //                       Expanded(
-//                         child: TextFormField(
-//                           controller: textEditingController,
-//                           decoration: const InputDecoration(
-//                               hintText: "Write message...",
-//                               hintStyle: TextStyle(color: Colors.black54),
-//                               border: InputBorder.none),
-//                         ),
+                        // child: TextFormField(
+                        //   controller: textEditingController,
+                        //   decoration: const InputDecoration(
+                        //       hintText: "Write message...",
+                        //       hintStyle: TextStyle(color: Colors.black54),
+                        //       border: InputBorder.none),
+                        // ),
 //                       ),
 //                       const SizedBox(
 //                         width: 15,
@@ -204,9 +204,10 @@ class ChatScreen extends StatefulWidget {
   String Name;
   String image;
   String id;
+  RegisterPeramedic? provider;
   // GetParamedicsOffers? paramedicModel;
   ChatScreen(
-      {Key? key, required this.Name, required this.image, required this.id})
+      {Key? key, required this.Name, required this.image, required this.id, this.provider })
       : super(key: key);
 
   @override
@@ -248,7 +249,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   const SizedBox(
                     width: 2,
                   ),
-                  (widget.image == null)?
+                  (widget.image == "")?
                   const CircleAvatar(
                       backgroundColor: Colors.white,
                       maxRadius: 20,
@@ -268,7 +269,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       children: <Widget>[
                         Text(
                           widget.Name,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(
@@ -288,47 +289,45 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
         body: Consumer<RegisterPeramedic>(builder: (context, value, child) {
-          value.getListOfChat(widget.id);
+        value.getListOfChat(widget.id);
           return Stack(
             children: <Widget>[
-              Container(
-                child: (value.chatScreenList == null)
-                    ? const Center(child: Text("No messages yet"))
-                    : ListView.builder(
-                  itemCount: value.chatScreenList.length,
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    var getData = value.chatScreenList[index];
-                    return Container(
-                      padding: const EdgeInsets.only(
-                          left: 14, right: 14, top: 10, bottom: 10),
-                      child: Align(
-                        alignment: ((getData.id ==
-                            FirebaseAuth.instance.currentUser!.uid)
-                            ? Alignment.topRight
-                            : Alignment.topLeft),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: ((getData.id ==
-                                FirebaseAuth
-                                    .instance.currentUser!.uid)
-                                ? Colors.blue[200]
-                                : Colors.grey.shade200),
-                          ),
-                          padding: EdgeInsets.all(16),
-                          child: Text(
-                            getData.message,
-                            style: TextStyle(fontSize: 15),
-                          ),
+              (value.chatScreenList.isEmpty)
+                  ? const Center(child: Text("No messages yet"))
+                  :  Container(
+                height: MediaQuery.of(context).size.height *0.8,
+                child: ListView.builder(
+                itemCount: value.chatScreenList.length,
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                itemBuilder: (context, index) {
+                 var getData = value.chatScreenList[index];
+                  return Container(
+                    padding: const EdgeInsets.only(
+                        left: 14, right: 14, top: 10, bottom: 10),
+                    child: Align(
+                      alignment: ((getData.id ==
+                          FirebaseAuth.instance.currentUser!.uid)
+                          ? Alignment.topRight
+                          : Alignment.topLeft),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: ((getData.id ==
+                              FirebaseAuth
+                                  .instance.currentUser!.uid)
+                              ? Colors.blue[200]
+                              : Colors.grey.shade200),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          getData.message,
+                          style: TextStyle(fontSize: 15),
                         ),
                       ),
-                    );
-                  },
-                ),
-              ),
+                    ),
+                  );
+                },
+              ),),
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Container(

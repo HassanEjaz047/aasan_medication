@@ -12,6 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dialog_flowtter:
   device_preview: ^1.1.0
   flutter_spinkit: ^5.1.0
   cupertino_icons: ^1.0.2
@@ -49,6 +50,7 @@ flutter_icons:
   flutter_polyline_points: ^1.0.0
   shared_preferences: ^2.0.15
   percent_indicator: ^4.2.2
+ 
 
 
 
@@ -65,6 +67,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/dialog_flow_auth.json
     - assets/images/logo/
     - assets/images/homeScreen/
     - assets/googleMapStyles/

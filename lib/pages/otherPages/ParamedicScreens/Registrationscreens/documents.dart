@@ -200,9 +200,7 @@ Blury photos are not allowed""",
                            await value.peramedicRegistrationDocumentsFunction(
                                documentPic: documentPic!);
                            // ignore: use_build_context_synchronously
-                           Navigator.pop(context);
-                           // ignore: use_build_context_synchronously
-                           newSnackBar(context,"data saved" );
+                          Navigator.push(context,MaterialPageRoute(builder: (c)=>const ParamedicRegistrationScreen() ) );
                          }
                       },
                       child: Text(

@@ -1,151 +1,81 @@
+
+
+// import 'package:dialog_flowtter/dialog_flowtter.dart';
+// import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
-//
-// import '../services/utils/app_text_style.dart';
-// import '../services/utils/colors.dart';
-//
-// class TestScreen extends StatefulWidget {
-//   const TestScreen({Key? key}) : super(key: key);
-//
+
+// class Home extends StatefulWidget {
+//   const Home({Key? key}) : super(key: key);
+
 //   @override
-//   State<TestScreen> createState() => _TestScreenState();
+//   _HomeState createState() => _HomeState();
 // }
-//
-//
-//
-// class _TestScreenState extends State<TestScreen> {
+
+// class _HomeState extends State<Home> {
+//   late DialogFlowtter dialogFlowtter;
+//   final TextEditingController _controller = TextEditingController();
+
+//   List<Map<String, dynamic>> messages = [];
+
+//   @override
+//   void initState() {
+//     DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
+//     super.initState();
+//   }
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       body: Center(
-//         child:  SizedBox(
-//           width: screenWidth * 0.935,
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Row(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
+//       appBar: AppBar(
+//         title: Text('AMBot'),
+//       ),
+//       body: Container(
+//         child: Column(
+//           children: [
+//             Expanded(child: MessagesScreen(messages: messages)),
+//             Container(
+//               padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+//               color: Colors.deepPurple,
+//               child: Row(
 //                 children: [
-//                   Padding(
-//                   padding: const EdgeInsets.only(left: 5, top: 10),
-//                   child:
-//                   (model.imageUrl != "")
-//                       ? CircleAvatar(
-//                       backgroundColor: Colors.white,
-//                       radius: 25,
-//                       backgroundImage:
-//                       NetworkImage(model.imageUrl!))
-//                       :
-//                   const CircleAvatar(
-//                       backgroundColor: Colors.white,
-//                       radius: 25,
-//                       backgroundImage: AssetImage(
-//                           "assets/images/extra/profilePic.png")),),
 //                   Expanded(
-//                     child:
-//                     Padding(
-//                       padding: const EdgeInsets.only(top: 15, left: 10),
-//                       child: Text(
-//                         (model.address == null)
-//                             ? ""
-//                             : model.address,
-//                         style: AppTextStyles.popins(
-//                             style: const TextStyle(
-//                                 fontSize: 14,
-//                                 fontWeight: FontWeight.w600)),
-//                       ),
-//                     ),
-//                  ),
+//                       child: TextField(
+//                         controller: _controller,
+//                         style: TextStyle(color: Colors.white),
+//                       )),
+//                   IconButton(
+//                       onPressed: () {
+//                         sendMessage(_controller.text);
+//                         _controller.clear();
+//                       },
+//                       icon: Icon(Icons.send))
 //                 ],
 //               ),
-//               Row(
-//                 children: [
-//                   Padding(
-//                     padding: const EdgeInsets.only(left: 5, right: 10),
-//                     child: Text(
-//                      (model.patientName == null)
-//                          ?
-//                          :"${ model.patientName}"  ,
-//                       style: AppTextStyles.popins(
-//                           style: const TextStyle(
-//                             fontSize: 12,
-//                           )),
-//                     ),
-//                   ),
-//                   Text(
-//                    model.serviceName.toString(),
-//                     style: AppTextStyles.popins(
-//                         style: const TextStyle(
-//                             fontSize: 12,
-//                             color: AppColors.kDarkColor)),
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.only(left: 2, right: 2),
-//                     child: Text(
-//                       "-",
-//                       style: AppTextStyles.popins(
-//                           style: const TextStyle(
-//                               fontSize: 16,
-//                               color: AppColors.kDarkColor)),
-//                     ),
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.only(
-//                         left: 0, right: 2),
-//                     child: Text(
-//                       "${model.price.toString()} PKR",
-//                       style: AppTextStyles.popins(
-//                           style: const TextStyle(
-//                               fontSize: 12,
-//                               color: Colors.red)),
-//                     ),
-//                   ),
-//                   Text(
-//                     " ~",
-//                     style: AppTextStyles.popins(
-//                         style: const TextStyle(
-//                             fontSize: 16,
-//                             color: AppColors.kDarkColor)),
-//                   ),
-//                   Text(
-//                     (position == null)
-//                         ? ""
-//                         : calculateDistance(
-//                         position!.latitude,
-//                         position!.longitude,
-//                         value.serviceRequest[index]
-//                             .latitude,
-//                         value.serviceRequest[index]
-//                             .longitude)
-//                         .toStringAsFixed(1),
-//                     style: AppTextStyles.popins(
-//                         style: const TextStyle(
-//                             fontSize: 12,
-//                             color: AppColors.kDarkColor)),
-//                   ),
-//                   Text(
-//                     "km",
-//                     style: AppTextStyles.popins(
-//                         style: TextStyle(
-//                             fontSize: 12,
-//                             color: Colors.grey.shade600)),
-//                   )
-//                 ],
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.only(left: 9),
-//                 child: Text(
-//                  formattedTime,
-//                   style: AppTextStyles.popins(
-//                       style: const TextStyle(
-//                           fontSize: 9,
-//                           color: AppColors.kDarkColor)),
-//                 ),
-//               )
-//             ],
-//           ),
-//
+//             )
+//           ],
 //         ),
 //       ),
 //     );
+//   }
+
+//   sendMessage(String text) async {
+//     if (text.isEmpty) {
+//       print('Message is empty');
+//     } else {
+//       setState(() {
+//         addMessage(Message(text: DialogText(text: [text])), true);
+//       });
+
+//       DetectIntentResponse response = await dialogFlowtter.detectIntent(
+//           queryInput: QueryInput(text: TextInput(text: text)));
+//       if (response.message == null) return;
+//       setState(() {
+//         addMessage(response.message!);
+//       });
+//     }
+//   }
+
+//   addMessage(Message message, [bool isUserMessage = false]) {
+//     messages.add({'message': message, 'isUserMessage': isUserMessage});
 //   }
 // }
