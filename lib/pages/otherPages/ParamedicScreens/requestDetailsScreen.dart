@@ -145,6 +145,8 @@ class _AcceptPatientRequest extends State<AcceptPatientRequest> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 8.0, left: 8, bottom: 8),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -165,38 +167,29 @@ class _AcceptPatientRequest extends State<AcceptPatientRequest> {
                         Text(widget.currentService.patientName)
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.currentService.address,
-                            style: AppTextStyles.popins(
-                                style: const TextStyle(
-                              color: AppColors.kDarkColor,
-                              fontSize: 15,
-                            )),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8.0,
-                            ),
-                            child: Text(
-                              "PKR ${widget.currentService.price}",
+                     const Padding(
+                       padding: EdgeInsets.only(left: 8, top: 10),
+                       child: Icon( Icons.location_on, color: AppColors.kPrimaryColor, ),
+                     ),
+                      Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 2, right: 7, top: 10),
+                        child: Text(
+                          widget.currentService.address,
+                          style: AppTextStyles.popins(
                               style: const TextStyle(
-                                  color: AppColors.kPrimaryColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          )
-                        ],
+                                color: AppColors.kDarkColor,
+                                fontSize: 15,
+                              )),
+                        ),
                       ),
                     ),
+
                   ],
                 ),
               ),
             ),
+
             Container(
                 margin: const EdgeInsets.only(left: 15, right: 15),
                 decoration:
@@ -263,6 +256,7 @@ class _AcceptPatientRequest extends State<AcceptPatientRequest> {
                       if (doctorFee > 0) {
                         setState(() {
                           doctorFee = doctorFee - 50;
+                        // widget.currentService.price = widget.currentService.price - doctorFee;
                          
                         });
                       }
@@ -291,6 +285,7 @@ class _AcceptPatientRequest extends State<AcceptPatientRequest> {
                     onTap: () {
                       setState(() {
                         doctorFee = doctorFee + 50;
+                      //  widget.currentService.price = widget.currentService.price + doctorFee;
                        
                       });
                     },
