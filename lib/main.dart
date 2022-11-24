@@ -15,11 +15,9 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) {
-      RegisterPeramedic();
-    })
-  ], child: const MyApp()));
+  runApp(
+    const MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -40,15 +38,16 @@ class MyApp extends StatelessWidget {
                 child: Consumer<RegisterPeramedic>(
                   builder: (context, value, child) {
                     return (value.user != null)
-                        ? (value.user!.fName == "" || value.user!.lName == "")
+                        ? (nameEmpty(value))
                             ? const ReturnToSelectionScreen()
                             : const ReturnToHomeScreen()
-                        : Container(
-
-                          );
+                        : Container();
                   },
                 ),
               )
             : const MySplashscreen());
   }
+
+  bool nameEmpty(RegisterPeramedic value) =>
+      value.user!.fName == "" || value.user!.lName == "";
 }

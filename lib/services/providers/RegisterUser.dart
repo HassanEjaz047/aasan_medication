@@ -21,6 +21,14 @@ import '../models/PeramedicModels/servicesListModel.dart';
 import '../models/chat_model.dart';
 
 class RegisterPeramedic with ChangeNotifier {
+  // checkAuth() {
+  //   final auth = FirebaseAuth.instance;
+  //   auth.authStateChanges().listen((event) async {
+  //     if (event != null) {
+  //    await  filterUserProducts();
+  //     } else {}
+  //   });
+  // }
   RegisterPeramedic() {
     if (FirebaseAuth.instance.currentUser != null) {
       getCurrentUserData();

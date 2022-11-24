@@ -10,6 +10,7 @@ import 'package:med_assist/services/utils/colors.dart';
 class Selectionscreen extends StatefulWidget {
   Selectionscreen({Key? key, this.phoneNmber}) : super(key: key);
   String? phoneNmber;
+
   @override
   State<Selectionscreen> createState() => _SelectionscreenState();
 }
@@ -85,8 +86,12 @@ class _SelectionscreenState extends State<Selectionscreen> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20)))),
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (c)=>NameDetailsScreen() ), (route) => true);
-                         // Navigator.push(context, MaterialPageRoute(builder: (c)=>NameDetailsScreen() ));
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (c) => NameDetailsScreen()),
+                              (route) => true);
+                          // Navigator.push(context, MaterialPageRoute(builder: (c)=>NameDetailsScreen() ));
                         },
                         child: Text(
                           "Patient",
@@ -122,9 +127,7 @@ class _SelectionscreenState extends State<Selectionscreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => NameDetailsScreen(
-                                       
-                                      )));
+                                  builder: (context) => NameDetailsScreen()));
                         },
                         child: Text(
                           "Paramedic",
