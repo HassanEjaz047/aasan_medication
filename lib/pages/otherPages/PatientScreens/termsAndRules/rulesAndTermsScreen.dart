@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/RulesAndTerms/RulesAppBar.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/RulesAndTerms/privacyPolicy.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/RulesAndTerms/termsAndConditionsScreen.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/termsAndRules/rulesAppbar.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/RulesAndTerms/RulesAppBar.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/RulesAndTerms/privacyPolicy.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/RulesAndTerms/termsAndConditionsScreen.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/termsAndRules/rulesAppbar.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 
 class PatientRulesAndTerms extends StatefulWidget {
   const PatientRulesAndTerms({Key? key}) : super(key: key);

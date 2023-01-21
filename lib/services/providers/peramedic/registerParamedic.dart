@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:med_assist/services/models/PeramedicModels/basicInfoModel.dart';
+import 'package:aasan_medication/services/models/PeramedicModels/basicInfoModel.dart';
 
 import '../../models/PeramedicModels/cnic_model.dart';
 import '../../models/PeramedicModels/documet_model.dart';

@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:med_assist/pages/authScreens/phoneVerification.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientHomeScreen.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
-import 'package:med_assist/services/utils/colors.dart';
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
-import 'package:med_assist/services/widgets/text_fields.dart';
+import 'package:aasan_medication/pages/authScreens/phoneVerification.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientHomeScreen.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/services/widgets/text_fields.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/providers/RegisterUser.dart';
@@ -73,11 +73,11 @@ class _NameDetailsScreenState extends State<NameDetailsScreen> {
                       height: screenHeight * 0.08,
                     ),
                     Text(
-                      "Welcome to MED Assist!",
+                      "Welcome to Aasan Medication!",
                       style: AppTextStyles.popins(
                           style: const TextStyle(
                               color: AppColors.kPrimaryColor,
-                              fontSize: 25,
+                              fontSize: 20,
                               fontWeight: FontWeight.w600)),
                     ),
 

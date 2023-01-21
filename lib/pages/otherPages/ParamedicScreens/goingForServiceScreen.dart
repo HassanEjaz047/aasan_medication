@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/homeScreen.dart';
-import 'package:med_assist/services/models/PatientModels/getParamedicOffers.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/homeScreen.dart';
+import 'package:aasan_medication/services/models/PatientModels/getParamedicOffers.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../services/models/PatientModels/senRequestModel.dart';
@@ -209,7 +209,12 @@ class _ParamedicServiceScreen extends State<ParamedicServiceScreen> {
                         ),
                         child: IconButton(onPressed: (){
                              setState(() {
-                               _makePhoneCall('tel: 0${widget.provider.pNumber?.phoneNumber}');
+                                final Uri uri = Uri(
+                            scheme: 'tel',
+                            path: '0${widget.provider.pNumber?.phoneNumber}'
+                           );
+                           _launchUrl(uri);
+                             
                              });
                         }, icon:const Icon(Icons.call, ), color: Colors.white,),
                       )
@@ -240,7 +245,7 @@ class _ParamedicServiceScreen extends State<ParamedicServiceScreen> {
                     LoadingDialogue.showLoaderDialog(context);
                     await value.updateParamedicEndService(widget.patientModel.uid,FirebaseAuth.instance.currentUser!.uid);
                     await  value.paramedicServicesList ( widget.patientModel.address ,widget.patientModel.patientName,widget.patientModel.serviceName,widget.patientModel.price.toString() );
-                    await value.deleteServiceRequest( widget.patientModel.uid );
+                  //  await value.deleteServiceRequest( widget.patientModel.uid );
                     await value.deleteChatFunc(widget.patientModel.uid);
                       // ignore: use_build_context_synchronously
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> ParamedicHomeScreen() ));
@@ -347,11 +352,15 @@ class _ParamedicServiceScreen extends State<ParamedicServiceScreen> {
   GoogleMapController? _mapController;
   bool showBottom = true;
 
-  Future<void> _makePhoneCall(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+
+ Future<void> _launchUrl (Uri uri) async {
+    try {
+      if (await canLaunchUrl(uri )) {
+      await launchUrl(uri);
+    } 
+    else {
+      throw 'Could not launch $uri';
     }
-  }
+    } catch (_){}
+}
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientHomeScreen.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientHomeScreen.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/models/PatientModels/getParamedicOffers.dart';

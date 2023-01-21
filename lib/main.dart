@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientHomeScreen.dart';
-import 'package:med_assist/pages/otherPages/checkUserCredentials.dart';
-import 'package:med_assist/pages/otherPages/selectionScreen.dart';
-import 'package:med_assist/pages/otherPages/splashScreen.dart';
-import 'package:med_assist/pages/otherPages/user_logedin.dart';
-import 'package:med_assist/pages/test.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientHomeScreen.dart';
+import 'package:aasan_medication/pages/otherPages/checkUserCredentials.dart';
+import 'package:aasan_medication/pages/otherPages/selectionScreen.dart';
+import 'package:aasan_medication/pages/otherPages/splashScreen.dart';
+import 'package:aasan_medication/pages/otherPages/user_logedin.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
 import 'package:provider/provider.dart';
 
 Future main() async {
@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
     // FirebaseAuth.instance.signOut();
     WidgetsApp.debugAllowBannerOverride = false;
     return MaterialApp(
-        title: 'MED Assist ',
+        title: 'Aasan Medication',
         theme: ThemeData(
-          primarySwatch: Colors.pink,
+          primarySwatch: Colors.blue,
         ),
         home: (FirebaseAuth.instance.currentUser != null)
             ? ChangeNotifierProvider<RegisterPeramedic>(

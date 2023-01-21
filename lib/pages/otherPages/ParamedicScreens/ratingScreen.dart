@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 

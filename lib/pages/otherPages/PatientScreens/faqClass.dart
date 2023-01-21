@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientFaqScreens/complainAParamedic.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientFaqScreens/patientLeaveReviewForParamedic.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientFaqScreens/peramedicNotResponse.dart';
-import 'package:med_assist/pages/otherPages/supportScreen.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientFaqScreens/complainAParamedic.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientFaqScreens/patientLeaveReviewForParamedic.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientFaqScreens/peramedicNotResponse.dart';
+import 'package:aasan_medication/pages/otherPages/supportScreen.dart';
 
 import '../../../services/utils/app_text_style.dart';
 import '../../../services/utils/colors.dart';

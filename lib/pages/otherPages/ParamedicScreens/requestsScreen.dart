@@ -5,10 +5,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/requestDetailsScreen.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/requestDetailsScreen.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 import 'package:provider/provider.dart';
 
 class PatientsRequestsScreen extends StatefulWidget {

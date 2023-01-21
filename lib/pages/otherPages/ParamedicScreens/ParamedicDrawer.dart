@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/paramedicFaqClass.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/requestHistoryScreen.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/settingsScreen.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/paramedicFaqClass.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/requestHistoryScreen.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/settingsScreen.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
 import 'package:provider/provider.dart';
 import '../../../services/utils/app_text_style.dart';
 import '../../../services/utils/colors.dart';
@@ -31,6 +31,7 @@ class _ParamedicDrawerWidgetState extends State<ParamedicDrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
+      ////////
       create: (context) => RegisterPeramedic(),
       child: Consumer<RegisterPeramedic>(
         builder: (context, value, child) => Drawer(

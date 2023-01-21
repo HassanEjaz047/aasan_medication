@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/showParamedicRequests.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/showParamedicRequests.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
@@ -162,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: IconButton(
                   onPressed: () {
                     Share.share(
-                        " https://play.google.com/store/apps/details?id=com.example.med_assist ");
+                        " https://play.google.com/store/apps/details?id=com.example.aasan_medication ");
                   },
                   icon: const Icon(
                     Icons.share,
@@ -271,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           width: 88,
                                           height: 33,
                                           child: Image(
-                                              image: AssetImage(model.image)))),
+                                              image: AssetImage(model.image), color: AppColors.kPrimaryColor, ))),
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 3),
                                     child: Text(model.title,

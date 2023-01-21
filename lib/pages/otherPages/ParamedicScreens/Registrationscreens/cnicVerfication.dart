@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
 import 'package:provider/provider.dart';
 import '../../../../services/providers/peramedic/registerParamedic.dart';
 import '../../../../services/utils/app_text_style.dart';
@@ -385,12 +385,14 @@ class _CnicVerficationState extends State<CnicVerfication> {
   void newSnackBar(BuildContext context, String text ) {
     final snackbaar = SnackBar(
         duration: const Duration(milliseconds: 2000),
-        backgroundColor: Colors.black.withOpacity(0.8),
+       // backgroundColor: Colors.black.withOpacity(0.8),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        content: Text(text));
+        content: Container(
+          child: Text(text),
+        ));
     ScaffoldMessenger.of(context).showSnackBar(snackbaar);
   }
 }

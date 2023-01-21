@@ -6,14 +6,13 @@ import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:med_assist/pages/otherPages/chat_screen.dart';
-import 'package:med_assist/services/models/PatientModels/getParamedicOffers.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/pages/otherPages/chat_screen.dart';
+import 'package:aasan_medication/services/models/PatientModels/getParamedicOffers.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../services/utils/app_text_style.dart';
-import '../../test.dart';
 
 class PatientGettingServiceScreen extends StatefulWidget {
   GetParamedicsOffers currentModel;
@@ -254,7 +253,12 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
                         ),
                         child: IconButton(onPressed: () {
                           setState(() {
-                            _makePhoneCall('tel: 0${widget.provider!.pNumber?.phoneNumber}');
+                             final Uri uri = Uri(
+                            scheme: 'tel',
+                            path: '0${widget.provider!.pNumber?.phoneNumber}'
+                           );
+                           _launchUrl(uri);
+                           
                           });
                         },
                           icon: const Icon(Icons.call,),
@@ -329,11 +333,14 @@ class _PatientGettingServiceScreen extends State<PatientGettingServiceScreen> {
       return placemark;
     });
   }
-  Future<void> _makePhoneCall(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+ Future<void> _launchUrl (Uri uri) async {
+    try {
+      if (await canLaunchUrl(uri )) {
+      await launchUrl(uri);
+    } 
+    else {
+      throw 'Could not launch $uri';
     }
-  }
+    } catch (_){}
+}
 }

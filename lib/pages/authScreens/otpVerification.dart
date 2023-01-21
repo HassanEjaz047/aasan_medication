@@ -4,9 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientHomeScreen.dart';
-import 'package:med_assist/pages/otherPages/chat_screen.dart';
-import 'package:med_assist/pages/otherPages/selectionScreen.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientHomeScreen.dart';
+import 'package:aasan_medication/pages/otherPages/chat_screen.dart';
+import 'package:aasan_medication/pages/otherPages/selectionScreen.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import '../../services/providers/RegisterUser.dart';
@@ -50,56 +50,71 @@ class _OtpVerificationState extends State<OtpVerification> {
                     children: [
                       // Logo
                       Padding(
-                        padding: const EdgeInsets.only(top: 70, bottom: 40),
+                        padding: const EdgeInsets.only(top: 90, bottom: 40),
                         child: SizedBox(
                           // color: Colors.red,
-                          width: screenWidth,
-                          height: screenHeight * 0.18,
+                          width: screenWidth * 0.8,
+                          height: screenHeight * 0.25,
                           child: const Image(
-                              image: AssetImage("assets/images/logo/logo.png")),
+                              image: AssetImage("assets/images/extra/otpScreen.png")),
                         ),
                       ),
-           
+
+
+                      const SizedBox(
+                        height: 30,
+                      ),
                       // text verification
                       Text(
-                        "Verification ",
+                        "Verification Code ",
                         style: AppTextStyles.popins(
                             style: const TextStyle(
-                                fontSize: 28,
+                                fontSize: 24,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.kPrimaryColor)),
                       ),
-           
+
+                      const SizedBox(
+                        height: 10,
+                      ),
                       // Verification Text
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
                         child: Text(
-                          "Please enter six digit verification code that we have sent to ",
+                          "Please enter code",
                           textAlign: TextAlign.center,
                           style: AppTextStyles.popins(
                               style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 15,
                             fontWeight: FontWeight.w400,
                             color: AppColors.kDarkColor,
                           )),
                         ),
                       ),
-           
-                      // number Text
-                      SizedBox(
-                        height: screenHeight * 0.05,
-                      ),
-                      Text(
-                        "+92 ${widget.phoneNumber} ",
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.popins(
-                            style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.kDarkColor,
-                        )),
-                      ),
-           
+                      RichText(
+                          textAlign: TextAlign.start,
+                          text: TextSpan(
+                              text: "sent to ",
+                              style: AppTextStyles.popins(
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.kDarkColor,
+                                  )),
+                              children: [
+                                TextSpan(
+                                    text: "+92 ${widget.phoneNumber} ",
+
+                                    style: AppTextStyles.popins(
+                                        style: const TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w400,
+                                          color: AppColors.kPrimaryColor,
+                                        )),
+
+                                ),
+                              ])),
+                      //
                       // pInput
                       SizedBox(
                         height: screenHeight * 0.04,
@@ -145,10 +160,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                         ),
                       ),
            
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Center(child: showTimer()),
+
            
                       // Rich Text Resend Code
                       SizedBox(
@@ -157,12 +169,12 @@ class _OtpVerificationState extends State<OtpVerification> {
                       RichText(
                           textAlign: TextAlign.start,
                           text: TextSpan(
-                              text: "Didnt receive code? ",
+                              text: "Didn't receive code? ",
                               style: AppTextStyles.popins(
                                 style: const TextStyle(
                                   color: AppColors.kDarkColor,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 18,
+                                  fontSize: 14,
                                 ),
                               ),
                               children: [
@@ -179,7 +191,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                                       decoration: TextDecoration.underline,
                                       color: AppColors.kPrimaryColor,
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 18,
+                                      fontSize: 16,
                                     ))),
                               ])),
            

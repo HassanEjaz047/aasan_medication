@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:med_assist/services/models/PatientModels/homeScreenModels/drowerProfileModel.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/services/models/PatientModels/homeScreenModels/drowerProfileModel.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../models/PatientModels/getParamedicOffers.dart';

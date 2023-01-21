@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 
 import 'RulesAppBar.dart';
 

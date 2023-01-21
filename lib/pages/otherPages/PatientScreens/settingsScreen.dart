@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:med_assist/pages/authScreens/phoneVerification.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/editNumberScreen.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/termsAndRules/rulesAndTermsScreen.dart';
-import 'package:med_assist/pages/otherPages/splashScreen.dart';
+import 'package:aasan_medication/pages/authScreens/phoneVerification.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/editNumberScreen.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/termsAndRules/rulesAndTermsScreen.dart';
+import 'package:aasan_medication/pages/otherPages/splashScreen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../services/providers/RegisterUser.dart';

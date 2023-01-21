@@ -1,8 +1,8 @@
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
-import 'package:med_assist/pages/otherPages/widget_support_chat.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
+import 'package:aasan_medication/pages/otherPages/widget_support_chat.dart';
 
 import '../../services/models/support_chat_model.dart';
 import '../../services/utils/app_text_style.dart';

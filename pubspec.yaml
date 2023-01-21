@@ -1,4 +1,4 @@
-name: med_assist
+name: aasan_medication
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -37,7 +37,7 @@ dependencies:
   url_launcher: ^6.1.6
   geolocator: ^9.0.2
   rename: ^2.0.1
-  flutter_launcher_icons: ^0.10.0
+  flutter_launcher_icons: ^0.11.0
   flutter_rating_stars: ^1.0.3+4
   email_validator: ^2.1.17
 flutter_icons:
@@ -75,6 +75,7 @@ flutter:
     - assets/images/homeScreen/Drawer/
     - assets/images/extra/safetyScreen/
     - assets/images/extra/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
 

@@ -4,10 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
-import 'package:med_assist/services/utils/colors.dart';
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
-import 'package:med_assist/services/widgets/text_fields.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/services/widgets/text_fields.dart';
 import 'package:provider/provider.dart';
 import '../../../../services/providers/peramedic/registerParamedic.dart';
 import '../../../../services/widgets/PeramedicData/paramedicRegisterWidget.dart';
@@ -356,6 +356,7 @@ class _BasicInfoState extends State<BasicInfo> {
                             if (_forkey.currentState!.validate()) {
                               LoadingDialogue.showLoaderDialog(context);
                               profilePicUrl = await uploadFile();
+                              print("ppp   $profilePicUrl");
                               if (profilePicUrl == null) {
                               if  (value.infoUser?.profileImage == null){
                                 // ignore: use_build_context_synchronously

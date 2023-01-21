@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "113202897594",
-    "project_id": "medassist-7d88f",
-    "storage_bucket": "medassist-7d88f.appspot.com"
+    "project_number": "848524000089",
+    "project_id": "aasanmedication-45086",
+    "storage_bucket": "aasanmedication-45086.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:113202897594:android:23b39c9c522e4aa26f5883",
+        "mobilesdk_app_id": "1:848524000089:android:ece4b2f33cf0a1cd922a48",
         "android_client_info": {
-          "package_name": "com.example.med_assist"
+          "package_name": "com.example.aasan_medication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "113202897594-q88hfp0tutg85vsqhl815m4ag4hquusr.apps.googleusercontent.com",
+          "client_id": "848524000089-hmp4de3a0k9ro1aubmkumidgcp7q7csh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDcPX8B5tJfQAl4m4QWWpCWdpyUB25FcF4"
+          "current_key": "AIzaSyCZZ2HAuOyIHuyYC3iZD5vDAcptKVxzkQk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "113202897594-q88hfp0tutg85vsqhl815m4ag4hquusr.apps.googleusercontent.com",
+              "client_id": "848524000089-hmp4de3a0k9ro1aubmkumidgcp7q7csh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
 // ignore: must_be_immutable
 class TextFieldClass extends StatelessWidget {
   TextEditingController? fieldController;

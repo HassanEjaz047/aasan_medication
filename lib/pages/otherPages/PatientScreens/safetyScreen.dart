@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../services/utils/app_text_style.dart';
@@ -102,7 +102,12 @@ class _SafetyScreenState extends State<SafetyScreen> {
                                       borderRadius: BorderRadius.circular(20)))),
                           onPressed: () {
                             setState(() {
-                              _makePhoneCall('tel:112');
+                          
+                           final Uri uri = Uri(
+                            scheme: 'tel',
+                            path: '112'
+                           );
+                           _launchUrl(uri);
                             });
                           },
                           child: Text(
@@ -136,7 +141,11 @@ class _SafetyScreenState extends State<SafetyScreen> {
                                       borderRadius: BorderRadius.circular(20)))),
                           onPressed: () {
                             setState(() {
-                              _makePhoneCall('tel:115');
+                              final Uri uri = Uri(
+                            scheme: 'tel',
+                            path: '115'
+                           );
+                           _launchUrl(uri);
                             });
                           },
                           child: Text(
@@ -157,10 +166,16 @@ class _SafetyScreenState extends State<SafetyScreen> {
 
     );
   }
-  Future<void> _makePhoneCall(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+
+  Future<void> _launchUrl (Uri uri) async {
+    try {
+      if (await canLaunchUrl(uri )) {
+      await launchUrl(uri);
+    } 
+    else {
+      throw 'Could not launch $uri';
     }
-}}
+    } catch (_){}
+}
+
+}

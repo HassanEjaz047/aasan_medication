@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 
 import 'RulesAppBar.dart';
 
@@ -25,7 +25,7 @@ class ParamedicTermsAndConditions extends StatelessWidget {
                 padding: const EdgeInsets.all(12.0),
                 child: Center(
                   child: Text(
-                    "MED Assist Terms of Use",
+                    "Aasan Medication Terms of Use",
                     style: AppTextStyles.popins(
                         style: const TextStyle(
                             color: AppColors.kDarkColor,
@@ -38,7 +38,7 @@ class ParamedicTermsAndConditions extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   '''
-      These terms of service constitute an agreement (the “Agreement”) between you and MedAssist (MED Assist, “we,” “us” or “our”) governing your use of the medAssist application, website. 
+      These terms of service constitute an agreement (the “Agreement”) between you and MedAssist (Aasan Medication, “we,” “us” or “our”) governing your use of the medAssist application, website. 
       ''',
                   style: AppTextStyles.popins(
                       style: const TextStyle(

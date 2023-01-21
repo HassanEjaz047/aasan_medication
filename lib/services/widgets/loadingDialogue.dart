@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 
 class LoadingDialogue{
   static showLoaderDialog(BuildContext context, {String text = 'Loading'}) {

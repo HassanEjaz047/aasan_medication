@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
 
 import '../../models/PatientModels/senRequestModel.dart';
 

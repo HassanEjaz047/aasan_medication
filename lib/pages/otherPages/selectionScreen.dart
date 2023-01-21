@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/homeScreen.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientHomeScreen.dart';
-import 'package:med_assist/pages/otherPages/NameDetailsScreen.dart';
-import 'package:med_assist/services/utils/app_text_style.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/homeScreen.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientHomeScreen.dart';
+import 'package:aasan_medication/pages/otherPages/NameDetailsScreen.dart';
+import 'package:aasan_medication/services/utils/app_text_style.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 
 class Selectionscreen extends StatefulWidget {
   Selectionscreen({Key? key, this.phoneNmber}) : super(key: key);
@@ -29,6 +29,7 @@ class _SelectionscreenState extends State<Selectionscreen> {
             physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
+
                 // Are u a paramedi or patient text
                 SizedBox(
                   height: screenHeight * 0.045,
@@ -48,7 +49,7 @@ class _SelectionscreenState extends State<Selectionscreen> {
 
                 // Are u a paramedi or patient text
                 Padding(
-                  padding: const EdgeInsets.only(top: 0, left: 7, right: 7),
+                  padding: const EdgeInsets.only(top: 0, left: 7, right: 7, bottom: 35),
                   child: Text(
                     "You can change the mode later",
                     textAlign: TextAlign.center,
@@ -62,7 +63,7 @@ class _SelectionscreenState extends State<Selectionscreen> {
 
                 // Seection Picture
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 45, vertical: 55),
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 55),
                   child: Image(
                       image: AssetImage(
                           "assets/images/selectionScreen/selectionPic.png")),

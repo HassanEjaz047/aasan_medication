@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientHomeScreen.dart';
-import 'package:med_assist/services/models/PatientModels/homeScreenModels/drowerProfileModel.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientHomeScreen.dart';
+import 'package:aasan_medication/services/models/PatientModels/homeScreenModels/drowerProfileModel.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
-import 'package:med_assist/services/widgets/paramedics_offers.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/services/widgets/paramedics_offers.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
@@ -368,9 +368,11 @@ class _ShowParamedicRequests extends State<ShowParamedicRequests> {
             model: model,
             user: widget.user,
             onPressed: () async {
+               await value.deleteServiceRequest(FirebaseAuth.instance.currentUser!.uid );
               FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).collection("endService").doc(value.offers[index].id);
               await value.paramedicRequestResponseAccept(
                 value.offers[index].id, context, value.offers[index],value,
+                 
 
               );
             },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:med_assist/services/utils/colors.dart';
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
-import 'package:med_assist/services/widgets/text_fields.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/services/widgets/text_fields.dart';
 
 import '../../../../services/utils/app_text_style.dart';
 import '../../../../services/widgets/PeramedicData/paramedicRegisterWidget.dart';

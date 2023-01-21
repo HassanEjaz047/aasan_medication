@@ -8,16 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/homeScreen.dart';
-import 'package:med_assist/pages/otherPages/ParamedicScreens/registerScreen.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/homeScreen.dart';
+import 'package:aasan_medication/pages/otherPages/ParamedicScreens/registerScreen.dart';
 
-import 'package:med_assist/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
-import 'package:med_assist/pages/otherPages/PatientScreens/patientHomeScreen.dart';
-import 'package:med_assist/services/models/PatientModels/getParamedicOffers.dart';
-import 'package:med_assist/services/providers/RegisterUser.dart';
-import 'package:med_assist/services/utils/colors.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientDrawerWidget.dart';
+import 'package:aasan_medication/pages/otherPages/PatientScreens/patientHomeScreen.dart';
+import 'package:aasan_medication/services/models/PatientModels/getParamedicOffers.dart';
+import 'package:aasan_medication/services/providers/RegisterUser.dart';
+import 'package:aasan_medication/services/utils/colors.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:med_assist/services/widgets/loadingDialogue.dart';
+import 'package:aasan_medication/services/widgets/loadingDialogue.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
@@ -41,8 +41,14 @@ class AcceptPatientRequest extends StatefulWidget {
 
 class _AcceptPatientRequest extends State<AcceptPatientRequest> {
 
+  // Camera Location
+
+
+  final Set<Marker> _markers = {};
+  final Set<Polyline> _polyline = {};
   @override
   void initState() {
+    
     patientlng = widget.currentService.latitude;
     patientlng = widget.currentService.longitude;
     super.initState();
@@ -51,7 +57,7 @@ class _AcceptPatientRequest extends State<AcceptPatientRequest> {
   }
   var price;
 
-  final List<Marker> _markers = <Marker>[];
+
   GoogleMapController? _mapController;
 
 

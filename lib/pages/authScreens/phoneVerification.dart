@@ -3,7 +3,7 @@ import 'package:country_phone_code_picker/models/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:med_assist/pages/authScreens/otpVerification.dart';
+import 'package:aasan_medication/pages/authScreens/otpVerification.dart';
 import '../../services/utils/app_text_style.dart';
 import '../../services/utils/colors.dart';
 
@@ -43,7 +43,7 @@ class _PhoneVerficationState extends State<PhoneVerfication> {
                     welcomeText(),
 
                     SizedBox(
-                      height: screenHeight * 0.12,
+                      height: screenHeight * 0.05,
                     ),
 
                     // text fileds of number
@@ -52,9 +52,7 @@ class _PhoneVerficationState extends State<PhoneVerfication> {
                     // Next ButtonSizedBox(height: screenHeight *0.04,)
                     submitButton(),
 
-                    // Terms and Conditions
-                    SizedBox(height: screenHeight * 0.17),
-                    termsAndConditions()
+
                   ],
                 ),
               ),
@@ -71,8 +69,8 @@ class _PhoneVerficationState extends State<PhoneVerfication> {
   Widget logoImage() {
     return SizedBox(
       // color: Colors.red,
-      width: screenWidth * 0.44,
-      height: screenHeight * 0.25,
+      width: screenWidth * 0.7,
+      height: screenHeight * 0.4,
       child: const Image(image: AssetImage("assets/images/logo/logo.png")),
     );
   }
@@ -80,10 +78,10 @@ class _PhoneVerficationState extends State<PhoneVerfication> {
 // signin Text
   Widget signInText() {
     return Text(
-      "Sign in",
+      "Verifiy your number ",
       style: AppTextStyles.popins(
           style: const TextStyle(
-              fontSize: 28,
+              fontSize: 24,
               fontWeight: FontWeight.w600,
               color: AppColors.kPrimaryColor)),
     );
@@ -93,19 +91,20 @@ class _PhoneVerficationState extends State<PhoneVerfication> {
   Widget welcomeText() {
     return // Welcome Text
         Text(
-      "Welcome to MED Assist",
+      "Please enter your phone number and select your country code",
       style: AppTextStyles.popins(
           style: const TextStyle(
-              fontSize: 18,
+              fontSize: 14,
               fontWeight: FontWeight.w400,
-              color: AppColors.kDarkColor)),
+              color: AppColors.kDarkColor),),
+          textAlign: TextAlign.center,
     );
   }
 
 // Number text field
   Widget numberTextField() {
     return Padding(
-      padding: const EdgeInsets.only(top: 15, right: 0, bottom: 17),
+      padding: const EdgeInsets.only(top: 1, right: 0, bottom: 17),
       child: SizedBox(
         width: screenWidth * 0.9,
         height: screenHeight * 0.08,
@@ -114,36 +113,56 @@ class _PhoneVerficationState extends State<PhoneVerfication> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: screenWidth * 0.3,
+              Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.grey.shade300,
+                ),
+                width: screenWidth * 0.23,
                 child: CountryPhoneCodePicker.withDefaultSelectedCountry(
                   defaultCountryCode: Country(
                       name: 'Pakistan', countryCode: 'PK', phoneCode: ' +92'),
-                  flagWidth: 40,
+                  flagWidth: 20,
+                 borderRadius: 100,
                   style: const TextStyle(fontSize: 18),
                   searchBarHintText: 'Search by name',
                   showPhoneCode: true,
                 ),
               ),
+              const SizedBox(
+                width: 10,
+              ),
               Expanded(
-                  child: TextFormField(
-                validator: (value) {
-                  if (value!.toString().length < 10) {
-                    return "  please provide a valid number";
-                  } else {
-                    return null;
-                  }
-                },
-                controller: numberController,
-                maxLength: 10,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    // border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                    enabled: true,
-                    hintText: "Enter your phone number",
-                    hintStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-              ))
+                  child: Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.grey.shade300,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value!.toString().length < 10) {
+                            return "  please provide a valid number";
+                          } else {
+                            return null;
+                          }
+                        },
+                        controller: numberController,
+                      //  maxLength: 10,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          // border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                            enabled: true,
+                            hintText: "Enter your phone number",
+                            hintStyle:
+                            TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+                      ),
+                    ),
+                  ))
             ],
           ),
         ),
@@ -154,16 +173,16 @@ class _PhoneVerficationState extends State<PhoneVerfication> {
 // Next button
   Widget submitButton() {
     return Container(
-        height: screenHeight * 0.07,
+        height: screenHeight * 0.06,
         width: screenWidth * 0.9,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
           color: AppColors.kPrimaryColor,
         ),
         child: ElevatedButton(
           style: ButtonStyle(
               shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)))),
+                  borderRadius: BorderRadius.circular(10)))),
           onPressed: () async {
             if (_formkey.currentState!.validate()) {
               _formkey.currentState!.save();
@@ -177,7 +196,7 @@ class _PhoneVerficationState extends State<PhoneVerfication> {
             }
           },
           child: Text(
-            "Get OTP",
+            "SEND",
             style: AppTextStyles.popins(
                 style: const TextStyle(
                     color: AppColors.kWhiteColor,
